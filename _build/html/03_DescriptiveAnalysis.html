@@ -388,7 +388,6 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#descriptive-analysis-for-financial-time-series-data">Descriptive analysis for financial time-series data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparation-of-the-data">Preparation of the data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examining-financial-time-series-data">Examining financial time series data</a></li>
 </ul>
             </nav>
         </div>
@@ -1138,32 +1137,32 @@ None
     <tr>
       <th>0</th>
       <td>male</td>
-      <td>good</td>
-      <td>3.191687</td>
+      <td>neural</td>
+      <td>2.775048</td>
     </tr>
     <tr>
       <th>1</th>
       <td>female</td>
-      <td>bad</td>
-      <td>2.686977</td>
+      <td>neural</td>
+      <td>1.292479</td>
     </tr>
     <tr>
       <th>2</th>
       <td>female</td>
-      <td>neural</td>
-      <td>3.602239</td>
+      <td>bad</td>
+      <td>3.036050</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>male</td>
-      <td>good</td>
-      <td>0.438996</td>
+      <td>female</td>
+      <td>bad</td>
+      <td>4.313660</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>male</td>
+      <td>female</td>
       <td>neural</td>
-      <td>0.484994</td>
+      <td>3.935220</td>
     </tr>
   </tbody>
 </table>
@@ -1217,38 +1216,38 @@ None
   <tbody>
     <tr>
       <th>0</th>
-      <td>good</td>
-      <td>3.191687</td>
+      <td>neural</td>
+      <td>2.775048</td>
       <td>0.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>bad</td>
-      <td>2.686977</td>
+      <td>neural</td>
+      <td>1.292479</td>
       <td>1.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>neural</td>
-      <td>3.602239</td>
+      <td>bad</td>
+      <td>3.036050</td>
       <td>1.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>good</td>
-      <td>0.438996</td>
-      <td>0.0</td>
+      <td>bad</td>
+      <td>4.313660</td>
       <td>1.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>4</th>
       <td>neural</td>
-      <td>0.484994</td>
-      <td>0.0</td>
+      <td>3.935220</td>
       <td>1.0</td>
+      <td>0.0</td>
     </tr>
   </tbody>
 </table>
@@ -1266,7 +1265,7 @@ None
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The variable assessment has the following unique values:
-[&#39;good&#39; &#39;bad&#39; &#39;neural&#39;]
+[&#39;neural&#39; &#39;bad&#39; &#39;good&#39;]
 </pre></div>
 </div>
 <div class="output text_html"><div>
@@ -1296,38 +1295,38 @@ None
   <tbody>
     <tr>
       <th>0</th>
-      <td>3</td>
-      <td>3.191687</td>
+      <td>2</td>
+      <td>2.775048</td>
       <td>0.0</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>1</td>
-      <td>2.686977</td>
+      <td>2</td>
+      <td>1.292479</td>
       <td>1.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>2</td>
-      <td>3.602239</td>
+      <td>1</td>
+      <td>3.036050</td>
       <td>1.0</td>
       <td>0.0</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>3</td>
-      <td>0.438996</td>
-      <td>0.0</td>
+      <td>1</td>
+      <td>4.313660</td>
       <td>1.0</td>
+      <td>0.0</td>
     </tr>
     <tr>
       <th>4</th>
       <td>2</td>
-      <td>0.484994</td>
-      <td>0.0</td>
+      <td>3.935220</td>
       <td>1.0</td>
+      <td>0.0</td>
     </tr>
   </tbody>
 </table>
@@ -1376,48 +1375,48 @@ None
   <tbody>
     <tr>
       <th>0</th>
-      <td>3</td>
-      <td>3.191687</td>
+      <td>2</td>
+      <td>2.775048</td>
       <td>0.0</td>
       <td>1.0</td>
-      <td>0.576170</td>
-      <td>0.642576</td>
+      <td>0.413514</td>
+      <td>0.596052</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>1</td>
-      <td>2.686977</td>
+      <td>2</td>
+      <td>1.292479</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>0.321960</td>
-      <td>0.599882</td>
+      <td>-0.384789</td>
+      <td>0.462613</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>2</td>
-      <td>3.602239</td>
+      <td>1</td>
+      <td>3.036050</td>
       <td>1.0</td>
       <td>0.0</td>
-      <td>0.782956</td>
-      <td>0.677304</td>
+      <td>0.554053</td>
+      <td>0.619543</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>3</td>
-      <td>0.438996</td>
-      <td>0.0</td>
+      <td>1</td>
+      <td>4.313660</td>
       <td>1.0</td>
-      <td>-0.810297</td>
-      <td>0.409724</td>
+      <td>0.0</td>
+      <td>1.241995</td>
+      <td>0.734535</td>
     </tr>
     <tr>
       <th>4</th>
       <td>2</td>
-      <td>0.484994</td>
-      <td>0.0</td>
+      <td>3.935220</td>
       <td>1.0</td>
-      <td>-0.787129</td>
-      <td>0.413615</td>
+      <td>0.0</td>
+      <td>1.038220</td>
+      <td>0.700473</td>
     </tr>
   </tbody>
 </table>
@@ -1439,7 +1438,7 @@ None
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/3169ecf72bdbdc5291e9df3bdfbdeb3a39fab4a76096c78a5537f96364317455.png" src="_images/3169ecf72bdbdc5291e9df3bdfbdeb3a39fab4a76096c78a5537f96364317455.png" />
+<img alt="_images/5872116806c6af86f87b10b3095b438514cf190ef27084d94947b1500cad043b.png" src="_images/5872116806c6af86f87b10b3095b438514cf190ef27084d94947b1500cad043b.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1450,19 +1449,9 @@ None
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/3a02372f415009d3e13d7d9f6065454f0ff69cb744163ba8126e32b4c0e6c564.png" src="_images/3a02372f415009d3e13d7d9f6065454f0ff69cb744163ba8126e32b4c0e6c564.png" />
+<img alt="_images/81ee58054a6cfaaf0a607a3b7ad8c87f1b3daac8e7b11a06b615b9aae5b4b138.png" src="_images/81ee58054a6cfaaf0a607a3b7ad8c87f1b3daac8e7b11a06b615b9aae5b4b138.png" />
 </div>
 </div>
-</section>
-<section id="examining-financial-time-series-data">
-<h2>Examining financial time series data<a class="headerlink" href="#examining-financial-time-series-data" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>prices and returns over time</p></li>
-<li><p>autocorrelation</p></li>
-<li><p>ewm-averages over time</p></li>
-<li><p>returns for different frequencies</p></li>
-<li><p>stylized facts</p></li>
-</ul>
 </section>
 </section>
 
@@ -1540,7 +1529,6 @@ None
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#descriptive-analysis-for-financial-time-series-data">Descriptive analysis for financial time-series data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparation-of-the-data">Preparation of the data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examining-financial-time-series-data">Examining financial time series data</a></li>
 </ul>
   </nav></div>
 
