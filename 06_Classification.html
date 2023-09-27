@@ -1,0 +1,1031 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Classification &#8212; Financial Data Analytics</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=927b94d3fcb96560df09" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=927b94d3fcb96560df09" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=927b94d3fcb96560df09" />
+  <script src="_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=927b94d3fcb96560df09"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '06_Classification';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Generalization of functional relationships" href="07_ModellAccuracy.html" />
+    <link rel="prev" title="The multiple linear regression model" href="05_LinearRegression.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="00_Introduction.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/course_logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/course_logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="00_Introduction.html">
+                    Financial Data Analytics
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01_PythonIntroduction.html">Introduction to Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_DataAccess.html">Access to data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_DescriptiveAnalysis.html">Descriptive analysis of data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_SupervisedLearning.html">The analysis of dependent variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_LinearRegression.html">The multiple linear regression model</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Classification</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="07_ModellAccuracy.html">Generalization of functional relationships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08_ModelComplexity.html">Model complexity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09_Regularization.html">Regularization</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="10_DimensionalityReduction.html">Dimensionality reduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11_Clustering.html">Clustering</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F06_Classification.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/06_Classification.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Classification</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Classification</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#logistic-regression">Logistic regression</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-the-logistic-regression-model">Training the logistic regression model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation-of-the-goodness-of-the-logistic-regression-model">Evaluation of the goodness of the logistic regression model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assessment-of-the-influence-of-the-independent-variables">Assessment of the influence of the independent variables</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#multinomial-and-softmax-regression">Multinomial and Softmax Regression</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="classification">
+<h1>Classification<a class="headerlink" href="#classification" title="Permalink to this heading">#</a></h1>
+<p>In addition to the regression problem, where the dependent variable is a quantiative variable, there are classification problems where the dependent variable is categorical in nature. For example, in economics we often find problems of a dependent variable with two categories such as the failure of a debtor, the loss of a customer, purchase decisions or fraud. This is also referred to as binary classification. Many models deal with binary classification, some of which can also be adapted to the general case of a dependent variable with at least three or more possible cagegories. We will first look at logistic regression as a natural extension of linear regression and how binary dependent variables can be analyzed using this model. Here, we again proceed similarly to the last chapter: we look at model specification, discuss how the model is estimated from data, and finally focus on the interpretation of an estimated model. Towards the end of the chapter, we discuss a modeling option for dependent variables with more than two categories.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="logistic-regression">
+<h1>Logistic regression<a class="headerlink" href="#logistic-regression" title="Permalink to this heading">#</a></h1>
+<p>Let’s look again at the equation for the prediction function of the linear regression model:</p>
+<div class="math notranslate nohighlight">
+\[
+f_{\boldsymbol{ \beta }}(\boldsymbol{x}) = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_p x_p =  \boldsymbol{\beta}^T \boldsymbol{x} 
+\]</div>
+<p>This is a function that generates a real number based on <span class="math notranslate nohighlight">\(p\)</span> variables. Real numbers can take on any value, which is problematic when we are dealing with a dependent variable that can only take on two realizations. Most often, the binary dependent variable is transformed into a dummy encoding, where one category is assigned to the number <span class="math notranslate nohighlight">\(1\)</span> and the other category is assigned to the number <span class="math notranslate nohighlight">\(0\)</span>. For example, non-payment (default) can be assigned to the number <span class="math notranslate nohighlight">\(1\)</span> and customers with loan repayment are assigned the number <span class="math notranslate nohighlight">\(0\)</span>. The record in the next cell contains exactly this coding. This dataset is about credit card default, with a dummy variable (student) and two quantitative predictors (balance, income) as explanatory variables. Balance here refers to the credit card account balance.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+
+<span class="n">default_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/Default.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s2">&quot;Unnamed: 0&quot;</span><span class="p">)</span>
+<span class="n">default_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;default&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">default_df</span><span class="o">.</span><span class="n">default</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">x</span><span class="o">==</span><span class="s2">&quot;Yes&quot;</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">default_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s2">&quot;student&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">default_df</span><span class="o">.</span><span class="n">student</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">x</span><span class="o">==</span><span class="s2">&quot;Yes&quot;</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">default_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>default</th>
+      <th>student</th>
+      <th>balance</th>
+      <th>income</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>0</td>
+      <td>729.526495</td>
+      <td>44361.625074</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>1</td>
+      <td>817.180407</td>
+      <td>12106.134700</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1073.549164</td>
+      <td>31767.138947</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>0</td>
+      <td>529.250605</td>
+      <td>35704.493935</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0</td>
+      <td>0</td>
+      <td>785.655883</td>
+      <td>38463.495879</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>If one would now try to predict the default variable by means of the linear regression model, values without categorical assignment would be predicted. To get around this, the logistic regression model changes the ouput of the linear regression so that it can be interpreted as the probability <span class="math notranslate nohighlight">\(P\left(y = 1 | \boldsymbol{x}\right)\)</span>. To achieve this, one uses the logistic function, also called the sigmoid function in the machine learning field, the latter actually being an umbrella term for S-shaped functions. The logistic function is generally defined for a number <span class="math notranslate nohighlight">\(z\)</span> as follows:</p>
+<div class="math notranslate nohighlight">
+\[
+f(z) = \frac{1}{1 + e^{-z}}
+\]</div>
+<p>In the lower cell we see the S-shaped progression. For logistic regression, the value range of the logistic function is of particular importance. This lies in the range <span class="math notranslate nohighlight">\([0, 1]\)</span>, which is why we can interpret the output as probability, since this also lies in the value range <span class="math notranslate nohighlight">\([0, 1]\)</span>. What we have declared here as variable <span class="math notranslate nohighlight">\(z\)</span> is in the logistic regression model the output of the linear regression function. More precisely, the prediction function of the logistic regression model becomes:</p>
+<div class="math notranslate nohighlight">
+\[
+f_{\boldsymbol{ \beta }}(\boldsymbol{x}) = \frac{1}{1 + e^{- \boldsymbol{\beta}^T \boldsymbol{x} }}
+\]</div>
+<p>Besides the constraint <span class="math notranslate nohighlight">\(f_{\boldsymbol{ \beta }}(\boldsymbol{x}) \in [0, 1]\)</span>, the other requirements of the probability calculus must also be satisfied. This means that the sum of the discontinuous events adds up to <span class="math notranslate nohighlight">\(1\)</span>. Thus, for binary classification, it is sufficient to specifically model the probability for one category, since this indirectly models the probability for the other category. By common convention, <span class="math notranslate nohighlight">\(f_{\boldsymbol{ \beta }}(\boldsymbol{x}) = P\left(y = 1| \boldsymbol{x} \right)\)</span>, which follows that <span class="math notranslate nohighlight">\(P\left(y = 0| \boldsymbol{x} \right) = 1 - f_{\boldsymbol{ \beta }}(\boldsymbol{x})\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+<span class="n">logistic</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">))</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">logistic</span><span class="p">(</span><span class="n">z</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$z$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\frac</span><span class="si">{1}</span><span class="s2">{1 + e^{-z}}$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Logistic function&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/8567172d321bcf74671224544e7d2a52396f31b5adb46e0e994dc39a367e23dc.png" src="_images/8567172d321bcf74671224544e7d2a52396f31b5adb46e0e994dc39a367e23dc.png" />
+</div>
+</div>
+<p>To consider the influence of the parameters of the model, we restrict ourselves to the logistic regression model with one explanatory variable for the lower cell.</p>
+<div class="math notranslate nohighlight">
+\[
+f_{\boldsymbol{ \beta }}(x) = \frac{1}{1 + e^{- \left(\beta_0 + \beta_1 x\right) }}
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="k">as</span> <span class="nn">plt</span>
+
+
+<span class="n">beta_null</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">beta_one</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+<span class="n">logistic</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">))</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">logistic</span><span class="p">(</span><span class="n">beta_null</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">beta_one</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">),</span> <span class="n">label</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;$\beta_0 = -1, \beta_1 = 1$&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">logistic</span><span class="p">(</span><span class="n">beta_null</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">beta_one</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">),</span> <span class="n">label</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;$\beta_0 = 0, \beta_1 = 1$&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">logistic</span><span class="p">(</span><span class="n">beta_null</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">beta_one</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">),</span> <span class="n">label</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;$\beta_0 = 1, \beta_1 = 1$&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$x$&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\frac</span><span class="si">{1}</span><span class="s2">{1 + e^{- \left(\beta_0 + \beta_1 x\right)}}$&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Impact of the constant&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">logistic</span><span class="p">(</span><span class="n">beta_null</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">beta_one</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">),</span> <span class="n">label</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;$\beta_0 = 0, \beta_1 = -1$&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">logistic</span><span class="p">(</span><span class="n">beta_null</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">beta_one</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">),</span> <span class="n">label</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;$\beta_0 = 0, \beta_1 = 1$&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">logistic</span><span class="p">(</span><span class="n">beta_null</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">beta_one</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">),</span> <span class="n">label</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;$\beta_0 = 0, \beta_1 = 2$&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$x$&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\frac</span><span class="si">{1}</span><span class="s2">{1 + e^{- \left(\beta_0 + \beta_1 x\right)}}$&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Impact of the slope&quot;</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/4cff2f35567bf50115abea6567b04f4487c3fb83f05a9c4b664df9d6876b964c.png" src="_images/4cff2f35567bf50115abea6567b04f4487c3fb83f05a9c4b664df9d6876b964c.png" />
+</div>
+</div>
+<p>We can see that an increase of the constant <span class="math notranslate nohighlight">\(\beta_0\)</span> leads to a parallel shift of the S-curve, while <span class="math notranslate nohighlight">\(\beta_1\)</span> controls how steep and in which direction the S-curve runs. Since the output of the model is “only” probabilities, the user still needs to specify a rule at which probability forecast is assigned to each category. This limit is often called cut-off and is usually initially set to the value <span class="math notranslate nohighlight">\(c=0.5\)</span>. Thus, the following rule applies to the actual forecast:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\hat{y} = 
+\begin{cases}
+1 &amp; \text{ if } f_{\boldsymbol{ \beta }}(\boldsymbol{x}) &gt; c \\
+0 &amp; \text{ else}
+\end{cases}
+\end{split}\]</div>
+<section id="training-the-logistic-regression-model">
+<h2>Training the logistic regression model<a class="headerlink" href="#training-the-logistic-regression-model" title="Permalink to this heading">#</a></h2>
+<p>As in the case of the linear regression model, given data, the question is which parameters best explain the data. In the case of binary classification, this means that we consider a model to be particularly good and appropriate if high probability predictions are given for the actual respective category. Specifically, <span class="math notranslate nohighlight">\(f_{\boldsymbol{ \beta }}(\boldsymbol{x})\)</span> takes high values for <span class="math notranslate nohighlight">\(y = 1\)</span> and low values for <span class="math notranslate nohighlight">\(y = 0\)</span> in the best case. Analogous to the linear regression model, this can be measured over multiple data points by choosing an appropriate loss function. Without going into the derivation of this loss function in more detail, in the next cell we consider the relationship of values <span class="math notranslate nohighlight">\(p\)</span> in the interval <span class="math notranslate nohighlight">\([0, 1]\)</span> and the function: <span class="math notranslate nohighlight">\(-\log(p)\)</span> an. We can see that this function has exactly the desired property. Assuming <span class="math notranslate nohighlight">\(p\)</span> is the probability forecast for the actual category <span class="math notranslate nohighlight">\(y=1\)</span>, the higher the forecast for this category, the smaller the value <span class="math notranslate nohighlight">\(-\log(p)\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.99</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$p$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$-\log(p)$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/f2f3eac5be911aa65841d34250d5aaa5b4268dcfee83e1d438cd17af8b646590.png" src="_images/f2f3eac5be911aa65841d34250d5aaa5b4268dcfee83e1d438cd17af8b646590.png" />
+</div>
+</div>
+<p>For multiple data points with different categorical membership, we must always consider both cases for calculating the loss function. If the observation is the category <span class="math notranslate nohighlight">\(y = 1\)</span>, the value of the loss function is <span class="math notranslate nohighlight">\(-\log \left(f_{\boldsymbol{ \beta }}(\boldsymbol{x}) \right)\)</span>. If the observation is the category <span class="math notranslate nohighlight">\(y = 0\)</span>, the value of the loss function is <span class="math notranslate nohighlight">\(-\log \left(1 - f_{\boldsymbol{ \beta }}(\boldsymbol{x}) \right)\)</span>. Using the dummy coding of <span class="math notranslate nohighlight">\(y\)</span>, this can be expressed per observation by:</p>
+<div class="math notranslate nohighlight">
+\[
+-\log \left(f_{\boldsymbol{ \beta }}(\boldsymbol{x})\right)y - \log \left(1 - f_{\boldsymbol{ \beta }}\left(\boldsymbol{x}\right) \right)\left(1 - y\right)
+\]</div>
+<p>Since the parameters are estimated from multiple data points, the loss function is defined by the average of these values:</p>
+<div class="math notranslate nohighlight">
+\[
+L\left(\boldsymbol{y},  f_{\boldsymbol{ \beta }}(\boldsymbol{x})\right) = - \frac{1}{n} \sum_{i=1}^n \log \left(f_{\boldsymbol{ \beta }}(\boldsymbol{x})\right)y + \log \left(1 - f_{\boldsymbol{ \beta }}\left(\boldsymbol{x}\right) \right)\left(1 - y\right)
+\]</div>
+<p>Even if the representation of this loss function looks more formally demanding than the one for the linear regression model, the principle remains roughly the same. The parameters are adjusted to make the model predictions as similar as possible to the actual observations. In the case of binary classification, this means that high probability predictions are made for the actual category. If this succeeds, it can be assumed that the model has recognized by the choice of the parameters which variables have a corresponding influence on the categorization.</p>
+<p>Notation: Although it seems somewhat unnecessary at this point, I would like to introduce a vector-oriented notation of the loss function just defined. For this purpose, we define a one-hot encoding of the dependent variable given by</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\tilde{\boldsymbol{y}} = 
+\begin{cases}
+\begin{pmatrix}
+1 \\
+0
+\end{pmatrix} &amp; \text{ if } y = 1 \\
+\begin{pmatrix}
+0 \\
+1
+\end{pmatrix} &amp; \text{ if } y = 0 \\
+\end{cases}
+\end{split}\]</div>
+<p>Moreover, we define the vector of probability forecasts for both categories as <span class="math notranslate nohighlight">\(\boldsymbol{\pi}_{\boldsymbol{\beta}}^T = \begin{pmatrix} f_{\boldsymbol{ \beta }}(\boldsymbol{x}) &amp; 1 - f_{\boldsymbol{ \beta }}(\boldsymbol{x}) \end{pmatrix}\)</span>. In this way, the loss function can also be given by:</p>
+<div class="math notranslate nohighlight">
+\[
+L\left(\boldsymbol{\tilde{Y}},  f_{\boldsymbol{ \beta }}(\boldsymbol{x})\right) = -\frac{1}{n} \sum_{i=1}^n \tilde{\boldsymbol{y}}_i \log \left( \boldsymbol{\pi}_{\boldsymbol{\beta}, i} \right)
+\]</div>
+<p>This somewhat more general representation can be used analogously for the case of a dependent variable with more than two categories. More details follow a little later in this chapter.</p>
+<p>As an introductory example, we estimate the logistic regression model for the credit card default dataset. In the output we see the estimated parameters of the logistic regression model, where positive influences of the variables balance and income and a negative influence of the variable student become apparent. One should be careful here in interpreting the strength of influence, as the explanatory variables are not in comparable numerical range. While the variable student is dummy coded, the mean value of balance is approximately 835 and that of income 33517. In order to better compare the influence strength, we re-estimate the model with standardized forms of the variables balance and income in the cell below and can see in this way that the variable balance has the greatest influence on the repayment. This means that the higher the charge on the credit card, the higher the probability of default. In addition, students have a lower default rate. According to the p-value of the variable income, a statistically significant non-zero influence cannot be assumed. However, the interpretation would be analogous to the variable balance.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+
+<span class="n">default_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/Default.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s2">&quot;Unnamed: 0&quot;</span><span class="p">)</span>
+<span class="n">default_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">default_df</span><span class="p">,</span> <span class="n">dtype</span> <span class="o">=</span> <span class="s2">&quot;int&quot;</span><span class="p">)</span>
+<span class="n">default_df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s2">&quot;default_No&quot;</span><span class="p">,</span> <span class="s2">&quot;student_No&quot;</span><span class="p">],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">default_df</span><span class="o">.</span><span class="n">rename</span><span class="p">({</span><span class="s2">&quot;default_Yes&quot;</span><span class="p">:</span> <span class="s2">&quot;default&quot;</span><span class="p">,</span> <span class="s2">&quot;student_Yes&quot;</span><span class="p">:</span> <span class="s2">&quot;student&quot;</span><span class="p">},</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">default_df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s2">&quot;default&quot;</span><span class="p">],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">default_df</span><span class="o">.</span><span class="n">default</span>
+
+<span class="n">logistic_regression</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">Logit</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">logistic_regression</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+
+<span class="n">y_hat</span> <span class="o">=</span> <span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.50</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
+         Current function value: 0.078577
+         Iterations 10
+                           Logit Regression Results                           
+==============================================================================
+Dep. Variable:                default   No. Observations:                10000
+Model:                          Logit   Df Residuals:                     9996
+Method:                           MLE   Df Model:                            3
+Date:                Wed, 27 Sep 2023   Pseudo R-squ.:                  0.4619
+Time:                        15:41:16   Log-Likelihood:                -785.77
+converged:                       True   LL-Null:                       -1460.3
+Covariance Type:            nonrobust   LLR p-value:                3.257e-292
+==============================================================================
+                 coef    std err          z      P&gt;|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+const        -10.8690      0.492    -22.079      0.000     -11.834      -9.904
+balance        0.0057      0.000     24.737      0.000       0.005       0.006
+income      3.033e-06    8.2e-06      0.370      0.712    -1.3e-05    1.91e-05
+student       -0.6468      0.236     -2.738      0.006      -1.110      -0.184
+==============================================================================
+
+Possibly complete quasi-separation: A fraction 0.15 of observations can be
+perfectly predicted. This might indicate that there is complete
+quasi-separation. In this case some parameters will not be identified.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+
+<span class="n">default_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../data/Default.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s2">&quot;Unnamed: 0&quot;</span><span class="p">)</span>
+<span class="n">default_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">default_df</span><span class="p">,</span> <span class="n">dtype</span> <span class="o">=</span> <span class="s2">&quot;int&quot;</span><span class="p">)</span>
+<span class="n">default_df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s2">&quot;default_No&quot;</span><span class="p">,</span> <span class="s2">&quot;student_No&quot;</span><span class="p">],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">default_df</span><span class="o">.</span><span class="n">rename</span><span class="p">({</span><span class="s2">&quot;default_Yes&quot;</span><span class="p">:</span> <span class="s2">&quot;default&quot;</span><span class="p">,</span> <span class="s2">&quot;student_Yes&quot;</span><span class="p">:</span> <span class="s2">&quot;student&quot;</span><span class="p">},</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">default_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s2">&quot;balance&quot;</span><span class="p">,</span> <span class="s2">&quot;income&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="p">(</span><span class="n">default_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s2">&quot;balance&quot;</span><span class="p">,</span> <span class="s2">&quot;income&quot;</span><span class="p">]]</span> <span class="o">-</span> <span class="n">default_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s2">&quot;balance&quot;</span><span class="p">,</span> <span class="s2">&quot;income&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span> <span class="o">/</span> <span class="n">default_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">[</span><span class="s2">&quot;balance&quot;</span><span class="p">,</span> <span class="s2">&quot;income&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">default_df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s2">&quot;default&quot;</span><span class="p">],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">default_df</span><span class="o">.</span><span class="n">default</span>
+
+<span class="n">logistic_regression</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">Logit</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">logistic_regression</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Optimization terminated successfully.
+         Current function value: 0.078577
+         Iterations 10
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                           Logit Regression Results                           
+==============================================================================
+Dep. Variable:                default   No. Observations:                10000
+Model:                          Logit   Df Residuals:                     9996
+Method:                           MLE   Df Model:                            3
+Date:                Wed, 27 Sep 2023   Pseudo R-squ.:                  0.4619
+Time:                        15:41:16   Log-Likelihood:                -785.77
+converged:                       True   LL-Null:                       -1460.3
+Covariance Type:            nonrobust   LLR p-value:                3.257e-292
+==============================================================================
+                 coef    std err          z      P&gt;|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+const         -5.9752      0.194    -30.849      0.000      -6.355      -5.596
+balance        2.7748      0.112     24.737      0.000       2.555       2.995
+income         0.0405      0.109      0.370      0.712      -0.174       0.255
+student       -0.6468      0.236     -2.738      0.006      -1.110      -0.184
+==============================================================================
+
+Possibly complete quasi-separation: A fraction 0.15 of observations can be
+perfectly predicted. This might indicate that there is complete
+quasi-separation. In this case some parameters will not be identified.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="evaluation-of-the-goodness-of-the-logistic-regression-model">
+<h2>Evaluation of the goodness of the logistic regression model<a class="headerlink" href="#evaluation-of-the-goodness-of-the-logistic-regression-model" title="Permalink to this heading">#</a></h2>
+<p>The goal of the logistic regression model is to predict the categories as well as possible based on the information of the independent variables. Thus, often the first look of the model is at the hit rate (accuracy), where the frequency of correct predictions is determined. Let us define the prediction accuracy for a single variable with:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+acc = 
+\begin{cases}
+1 &amp; \text{ if } y = \hat{y} \\
+0 &amp; \text{ else }
+\end{cases}
+\end{split}\]</div>
+<p>so the average hit rate is defined by:</p>
+<div class="math notranslate nohighlight">
+\[
+AC = \frac{1}{n} \sum_{i = 1}^n acc_i
+\]</div>
+<p>If we determine this for the default data set, we see a hit rate of <span class="math notranslate nohighlight">\(AC = 0.9732\)</span>, which seems very good at first glance. As with the linear regression model, however, one should always compare the model with a meaningful benchmark. For classifications, the frequency of the category with higher occurrence is always a good value for this.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The accuracy rate for the default data set is equal to: </span><span class="si">{</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">y_hat</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The accuracy rate for the default data set is equal to: 0.9732
+</pre></div>
+</div>
+</div>
+</div>
+<p>If we determine this, we see that the frequency of the failure is only at:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The frequency of default in the data set is: </span><span class="si">{</span><span class="n">y</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The frequency of default in the data set is: 0.0333
+</pre></div>
+</div>
+</div>
+</div>
+<p>This means that if we simply predicted no failure for all observations, we would achieve a hit rate of <span class="math notranslate nohighlight">\(1 - 0.0333 = 0.9667\)</span>. Thus, looking only at the hit rate of the model can be misleading. This is especially true for unbalanced data, where at least one category occurs at a significantly higher frequency than the other categories. To get a somewhat detailed picture of the goodness of the logistic regression model, it is first advisable to look at the confusion matrix. In the confusion matrix, for each category, the predicted categories are matched with the actual ones. The lower cell shows this matrix for the default data set and the logistic regression model. On the x-axis the predicted categories of the model are plotted, on the y-axis those of the actual realizations. Thus, on the diagonal are the occurences with correct prediction. Here, however, a distinction can be made. Predictions and realizations of the category of interest are called “positive”. Thus, it does not have to be a positive case, but in our example, a positive prediction would be the prediction that a failure will occur and a positive realization would be an actual failure accordingly. The number of True Positives (TP) are thus in the lower right corner of the matrix, in our example it comes to <span class="math notranslate nohighlight">\(104\)</span> TP. Similarly, True Negatives (TN) are correct predictions of a non-failure. The number of these are given in the upper left corner of the matrix as <span class="math notranslate nohighlight">\(9634\)</span>. Now we come to the two possible errors of the model. On the one hand, it can happen that the model predicts a failure and no failure occurs. This is called a false positive (FP) and is found in the upper right corner of the matrix (<span class="math notranslate nohighlight">\(33\)</span> cases in our example). The other error that can happen is that the model predicts no failure, but a failure does occur. This is called a False Negative (FN) and represents the more common source of failure in our example (<span class="math notranslate nohighlight">\(229\)</span> instances). Depending on the problem, this asymmetry is very important. For example, it may be more tolerable for medical tests to initially misdiagnose diseases in lieu of overlooking them. It may also be more important for a bank to predict actual defaults than to erroneously assign individuals to the risk group of those who will not repay the loan (in full). To better differentiate these errors, the precision and recall of the model is often included.</p>
+<p>The Precision is about:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{precision} = \frac{TP}{TP + FP}
+\]</div>
+<p>where this metric indicates the ability of the model to generate as few false positive predictions as possible. The recall is defined by:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{recall} = \frac{TP}{TP + FN}
+\]</div>
+<p>it describes the ability of the model to identify the positive categories of the dependent variable. Since both measures are important sources of information on the quality of the model, they can be combined in the F1 score:</p>
+<div class="math notranslate nohighlight">
+\[
+F_1 = \frac{2 \cdot \text{precision} \cdot \text{recall}}{\text{precision} + \text{recall}}
+\]</div>
+<p>In our example, both the values of the confusion matrix and the key figures just described show that the model has more problems with correctly forecasting actual failures than with making too many false positive forecasts. In general, it makes sense to interpret possible influences of independent variables only if the model is able to explain reality satisfactorily. However, the question of what is considered satisfactory can only be determined using econometric goals or expert knowledge. It should be noted that there are other metrics for assessing binary classification problems, which we refrain from presenting here. Moreover, the metrics presented here are also suitable for binary classification models other than logistic regression.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">ConfusionMatrixDisplay</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">recall_score</span><span class="p">,</span> <span class="n">precision_score</span><span class="p">,</span> <span class="n">f1_score</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">cm</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_hat</span><span class="p">)</span>
+<span class="n">disp</span> <span class="o">=</span> <span class="n">ConfusionMatrixDisplay</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">display_labels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;no default&quot;</span><span class="p">,</span> <span class="s2">&quot;default&quot;</span><span class="p">])</span>
+<span class="n">disp</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/79b43cacddaa9363ba942456e34c4d34b44318b8cc230960e4b5214032a0111b.png" src="_images/79b43cacddaa9363ba942456e34c4d34b44318b8cc230960e4b5214032a0111b.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The precision of the model is: </span><span class="si">{</span><span class="n">precision_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">y_hat</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The recall of the model is: </span><span class="si">{</span><span class="n">recall_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">y_hat</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The f1 score of the model is: </span><span class="si">{</span><span class="n">f1_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">y_hat</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The precision of the model is: 0.7241
+The recall of the model is: 0.3153
+The f1 score of the model is: 0.4393
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="assessment-of-the-influence-of-the-independent-variables">
+<h2>Assessment of the influence of the independent variables<a class="headerlink" href="#assessment-of-the-influence-of-the-independent-variables" title="Permalink to this heading">#</a></h2>
+<p>Using the logistic function changes the interpretation of the influence of the independent variables. For this purpose, we consider in the lower cell the special case of a logistic regression model with one variable and the parameters <span class="math notranslate nohighlight">\(\beta_0 = 0\)</span> and <span class="math notranslate nohighlight">\(\beta_1 = 1\)</span>. In contrast to linear regression, the influence of the variable <span class="math notranslate nohighlight">\(x\)</span> on the probability forecast is non-linear. This means that depending on the current value of <span class="math notranslate nohighlight">\(x\)</span>, a change of this value by one unit leads to different changes in the probability forecast. For example, if <span class="math notranslate nohighlight">\(x\)</span> increases from <span class="math notranslate nohighlight">\(0\)</span> to <span class="math notranslate nohighlight">\(1\)</span>, the probability forecast changes from <span class="math notranslate nohighlight">\(0.50\)</span> to <span class="math notranslate nohighlight">\(0.73\)</span>. However, if <span class="math notranslate nohighlight">\(x\)</span> increases from <span class="math notranslate nohighlight">\(2\)</span> to <span class="math notranslate nohighlight">\(3\)</span>, for example, the probability forecast only changes from <span class="math notranslate nohighlight">\(0.88\)</span> to <span class="math notranslate nohighlight">\(0.95\)</span>. This means that the effect of increasing <span class="math notranslate nohighlight">\(x\)</span> decreases when <span class="math notranslate nohighlight">\(x\)</span> already has a relatively high value.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pylab</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+<span class="n">logistic</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">))</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">logistic</span><span class="p">(</span><span class="n">z</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$x$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\frac</span><span class="si">{1}</span><span class="s2">{1 + e^{-x}}$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Logistic function&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/fb3a3b3790385e48c13c50c49b6e7aa56305019e7c4a802d99c1b78d71a711f0.png" src="_images/fb3a3b3790385e48c13c50c49b6e7aa56305019e7c4a802d99c1b78d71a711f0.png" />
+</div>
+</div>
+<p>Mathematically it can be shown that:</p>
+<div class="math notranslate nohighlight">
+\[
+\log \left( \frac{P(y = 1| \boldsymbol{x})}{1 - P(y = 1| \boldsymbol{x})}  \right) = \boldsymbol{\beta}^T \boldsymbol{x}
+\]</div>
+<p>So the logarithmized ratio of the probability forecasts for the respective categories is linear again. To be honest, however, I must admit that I do not find this kind of interpretation particularly insightful, since I am not used to thinking in logarithmic probability ratios. Thus, all that remains for me to say is that the direction of the independent variable’s effect can be identified by its sign. Which local influence an independent variable has can only be quantified depending on its current value.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="multinomial-and-softmax-regression">
+<h1>Multinomial and Softmax Regression<a class="headerlink" href="#multinomial-and-softmax-regression" title="Permalink to this heading">#</a></h1>
+<p>Once the idea of logistic regression is understood, it is relatively easy to adapt this idea to the case of a dependent variable with more than two categories. Two modeling approaches are popular for this purpose, the multinomial regression model and the softmax regression. In the multinomial model, <span class="math notranslate nohighlight">\(K-1\)</span> parameter vectors <span class="math notranslate nohighlight">\(\boldsymbol{\beta}_k\)</span> are used for <span class="math notranslate nohighlight">\(K\)</span> categories, and in the softmax regression <span class="math notranslate nohighlight">\(K\)</span> parameter vectors <span class="math notranslate nohighlight">\(\boldsymbol{\beta}_k\)</span> are used. No matter which model is used, we understand by a parameter vector:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\boldsymbol{\beta}_k = 
+\begin{pmatrix}
+\beta_{k0} \\
+\beta_{k1} \\
+\vdots \\
+\beta_{kp} \\
+\end{pmatrix}
+\end{split}\]</div>
+<p>if <span class="math notranslate nohighlight">\(p\)</span> independent variables are included in the model. In the multinomial model, we first have a linear regression alike function for the first <span class="math notranslate nohighlight">\(K-1\)</span> categories:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\beta_{10} + \beta_{11} x_1 + \beta_{12} x_2 + ... + \beta_{1p} x_p =  \boldsymbol{\beta}_1^T \boldsymbol{x} \\
+\beta_{20} + \beta_{21} x_1 + \beta_{22} x_2 + ... + \beta_{2p} x_p =  \boldsymbol{\beta}_2^T \boldsymbol{x} \\
+\vdots \\
+\beta_{(K-1)0} + \beta_{(K-1)1} x_1 + \beta_{(K-1)2} x_2 + ... + \beta_{(K-1)p} x_p =  \boldsymbol{\beta}_{(K-1)}^T \boldsymbol{x} \\
+\end{split}\]</div>
+<p>As with the logistic regression model, we would have the problem for these values that the respective output is any real number, but we want to predict individual categories. Also for this type of modeling, instead of actual categories, probabilities <span class="math notranslate nohighlight">\(P\left(y = k | \boldsymbol{x}\right)\)</span> are predicted. However, translating the real numbers into probabilities requires a similar “trick” as using logistic regression. For a model with multiple categories, all probability predictions must hold that they are in the range of values <span class="math notranslate nohighlight">\([0, 1]\)</span>. In addition, they must sum to <span class="math notranslate nohighlight">\(1\)</span> because the categories are disjoint events. To achieve this, the real number values for each category in the multinomial model are transformed by:</p>
+<div class="math notranslate nohighlight">
+\[
+P\left(y = k | \boldsymbol{x}\right) = f_{\boldsymbol{\beta}_k} \left( \boldsymbol{x} \right) = \frac{e^{ \boldsymbol{\beta}_k^T \boldsymbol{x}}}{1 + \sum_{l=1}^{K-1} e^{ \boldsymbol{\beta}_l^T \boldsymbol{x}}}
+\]</div>
+<p>The probability forecast of category <span class="math notranslate nohighlight">\(K\)</span> (which, by the way, can be chosen arbitrarily), results from the <span class="math notranslate nohighlight">\(K-1\)</span> probability forecasts:</p>
+<div class="math notranslate nohighlight">
+\[
+P\left(y = K | \boldsymbol{x}\right) = 1 - \sum_{l=1}^{K-1} P\left(y = l | \boldsymbol{x}\right) = f_{\boldsymbol{\beta}_K} \left( \boldsymbol{x} \right) = \frac{1}{1 + \sum_{l=1}^{K-1} e^{ \boldsymbol{\beta}_l^T \boldsymbol{x}}}
+\]</div>
+<p>In softmax regression, regression lines are formed for all <span class="math notranslate nohighlight">\(K\)</span> categories:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\beta_{10} + \beta_{11} x_1 + \beta_{12} x_2 + ... + \beta_{1p} x_p =  \boldsymbol{\beta}_1^T \boldsymbol{x} \\
+\beta_{20} + \beta_{21} x_1 + \beta_{22} x_2 + ... + \beta_{2p} x_p =  \boldsymbol{\beta}_2^T \boldsymbol{x} \\
+\vdots \\
+\beta_{K0} + \beta_{K1} x_1 + \beta_{K2} x_2 + ... + \beta_{Kp} x_p =  \boldsymbol{\beta}_{K}^T \boldsymbol{x} \\
+\end{split}\]</div>
+<p>Each real number of the respective straight lines is transformed into probabilities by means of the softmax function:</p>
+<div class="math notranslate nohighlight">
+\[
+P\left(y = k | \boldsymbol{x}\right) = f_{\boldsymbol{\beta}_k} \left( \boldsymbol{x} \right) = \frac{e^{ \boldsymbol{\beta}_k^T \boldsymbol{x}}}{\sum_{l=1}^{K} e^{ \boldsymbol{\beta}_l^T \boldsymbol{x}}}
+\]</div>
+<p>Thus, <span class="math notranslate nohighlight">\(p+1\)</span> more parameters must be estimated for the softmax model, yet this approach is somewhat more popular in machine learning, whereas multinomial regression is increasingly used in statistical analysis. Even though these models use more parameters and more model equations than logistic regression, the way logistic regression is modeled remains similar. The starting point is always a real number which stems from linear regression function, which is transformed using an appropriate function depending on the modeling needs. Also the models for <span class="math notranslate nohighlight">\(K&gt;2\)</span> categories, can be estimated under the same loss function. Let <span class="math notranslate nohighlight">\(\tilde{\boldsymbol{y}}\)</span> be a <span class="math notranslate nohighlight">\(K\)</span> dimensional one-hot vector that has value <span class="math notranslate nohighlight">\(1\)</span> at position <span class="math notranslate nohighlight">\(k\)</span> and <span class="math notranslate nohighlight">\(0\)</span> at all other positions. Moreover, let <span class="math notranslate nohighlight">\( \boldsymbol{\pi}_{B} \)</span> be the vector of probability forecasts, then all parameters <span class="math notranslate nohighlight">\(B\)</span> of the model are obtained by minimizing the loss function:</p>
+<div class="math notranslate nohighlight">
+\[
+L\left(\boldsymbol{y},  \boldsymbol{f}_{\boldsymbol{ B }}(\boldsymbol{x})\right) = -\frac{1}{n} \sum_{i=1}^n \tilde{y}_i \log \left( \boldsymbol{\pi}_{\boldsymbol{B}, i} \right)
+\]</div>
+<p>As with logistic regression, the functions used for transformation into probabilities are non-linear functions. This means that the signs of the parameters can be interpreted in their direction of effect on the respective category probability, but the strength of the influence on the respective probability predictions depends on the current value of the independent variable. When it comes to assessing the quality of the models, the key figures from the binary classification can be used partly in the same way (accuracy, confusion matrix) and partly in an adapted form. Since regression problems and binary classification problems are usually more common in economics, we will not give examples and further illustrations for classifying more than two categories. In addition, I would like to point out that the models discussed here were developed for nomial categories. If the variable is an ordinally scaled dependent variable, the ranking of the variable must also be taken into account. This is done, for example, in the ordinal regression model.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="05_LinearRegression.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">The multiple linear regression model</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="07_ModellAccuracy.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Generalization of functional relationships</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Classification</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#logistic-regression">Logistic regression</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-the-logistic-regression-model">Training the logistic regression model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation-of-the-goodness-of-the-logistic-regression-model">Evaluation of the goodness of the logistic regression model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assessment-of-the-influence-of-the-independent-variables">Assessment of the influence of the independent variables</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#multinomial-and-softmax-regression">Multinomial and Softmax Regression</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Prof. Dr. Ralf Kellner
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=927b94d3fcb96560df09"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=927b94d3fcb96560df09"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
